@@ -35,12 +35,11 @@ Models.Vehicle.prototype.vars =
 
 Models.Vehicle.prototype.updateLidarPoints = function ()
 {
-    this.lidarPoints = [];
-    for (var i = 0; i < this.lidarDirections.length; i++) {
-        var lidarPoint = this.lineSearch(this.x,this.y,this.heading + this.lidarDirections[i]);
-        lidarPoint.direction = this.lidarDirections[i];
-        this.lidarPoints.push(lidarPoint);
-    };
+    this.lidarPoints = this.lidarDirections.map(direction => {
+      const lidarPoint = this.lineSearch(this.x, this.y, this.heading + direction); 
+      lidarPoint.direction = direction;
+      return lidarPoint;
+    });
 }
 
 Models.Vehicle.prototype.simulate = function (dt, controlFunc)
