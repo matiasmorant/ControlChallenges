@@ -3,12 +3,9 @@ if (typeof Models === 'undefined') var Models = {};
 
 Models.SinglePendulum = function(params)
 {
-    var nVars = Object.keys(this.vars).length;
-    for(var i = 0; i < nVars; i++)
-    {
-        var key = Object.keys(this.vars)[i];
-        this[key] = (typeof params[key] == 'undefined')?this.vars[key]:params[key];
-    }
+    Object.keys(this.vars).forEach(key => {
+      this[key] = (typeof params[key] === 'undefined') ? this.vars[key] : params[key];
+    });
 }
 
 Models.SinglePendulum.prototype.vars = 
